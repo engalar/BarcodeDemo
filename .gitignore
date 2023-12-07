@@ -19,3 +19,5 @@
 
 doc/*.http
 doc/*.json
+/barcodedemo.mpr.bak
+/barcodedemo.mpr.lock
