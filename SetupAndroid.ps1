@@ -134,7 +134,7 @@ function _DryBuild {
   $env:PATH = "$JDK11\bin;$env:PATH;$env:PATH_BAK"
   Set-Location -Path "$env:TPL_HOME\android"
 
-  .\gradlew.bat installDevDebug
+  .\gradlew.bat installAppstoreDebug
 
   Set-Location -Path $originalLocation
   $env:PATH = $env:PATH_BAK
@@ -150,6 +150,7 @@ function BuildAndroid {
   SpeedupForChina
   _PatchGradleBuildFile # fixme
   _SetRuntimeUrl "192.168.2.22:8080"
+  _SetRuntimeUrl "192.168.43.51:8080"
 
   # 构建阶段
   BuildMendixForNative # Mendix->Native asset
