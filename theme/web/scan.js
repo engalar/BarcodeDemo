@@ -93,24 +93,21 @@ async function startScanning(deviceId) {
   var qrboxSize = Math.min(document.body.clientWidth * 0.8, 300); // 80% of the smaller dimension
 
   html5QrCode = new Html5Qrcode(/* element id */ uniqueId);
-  html5QrCode
-    .start(
-      deviceId,
-      {
-        fps: 10,
-        qrbox: qrboxSize,
-        useBarCodeDetectorIfSupported: true,
-        rememberLastUsedCamera: true,
-        videoConstraints: { facingMode: "environment" },
-      },
-      onScanSuccess,
-      (errorMessage) => {
-        // parse error, ignore it.
-      }
-    )
-    .catch((err) => {
-      // Start failed, handle it.
-    });
+  await html5QrCode.start(
+    deviceId,
+    {
+      fps: 10,
+      qrbox: qrboxSize,
+      useBarCodeDetectorIfSupported: true,
+      rememberLastUsedCamera: true,
+    },
+    onScanSuccess,
+    (errorMessage) => {
+      // parse error, ignore it.
+    }
+  );
+
+  dialog.resize();
 
   async function onScanSuccess(decodedText, decodedResult) {
     console.info(`Scan result ${decodedText}`, decodedResult);
